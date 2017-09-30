@@ -4,3 +4,4 @@ However, it does not seems to be the best choice for building micro services for
 Also security and vulnerability in the underlying layers have come to be know as the potentially fatal to any established business. Bugs and vulnerabilities like heartbleed can compromise the complete system and the easiest way to handle such issues is to be flexible enough to patch the production environment as quickly as possible with least service interruption. Integrating the deployment parameters in the build system fo product can be too early integration and can cause a nightmare in such cases.
 
 TESTING 1 added
+TESTING 2 added
