@@ -21,6 +21,13 @@ apply plugin: 'org.springframework.boot'
 jar {
 	baseName = 'course-api-data'
 	version = '0.0.1-SNAPSHOT'
+	manifest {
+		attributes 'Main-Class' : 'org.bhavneshgugnani.CourseApiDataApplication'
+	}
+	from {
+   		 configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+ 	}
+	ant.checksum file: archivePath
 }
 
 sourceCompatibility = 1.8
