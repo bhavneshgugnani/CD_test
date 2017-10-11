@@ -1,4 +1,7 @@
-defaultTasks 'jar'
+defaultTasks 'clean', 'assemble'
+
+def artifactname = 'course-api-data'
+def artifactversion = '0.0.1-SNAPSHOT'
 
 buildscript {
 	ext {
@@ -19,15 +22,18 @@ apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 
 jar {
-	baseName = 'course-api-data'
-	version = '0.0.1-SNAPSHOT'
+	baseName = artifactname
+	version = artifactversion
 	manifest {
 		attributes 'Main-Class' : 'org.bhavneshgugnani.CourseApiDataApplication'
 	}
 	from {
    		 configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
  	}
-	ant.checksum file: archivePath
+}
+
+assemble.doLast {
+	ant.checksum file: "./build/libs/${artifactname}-${artifactversion}.jar"
 }
 
 sourceCompatibility = 1.8
