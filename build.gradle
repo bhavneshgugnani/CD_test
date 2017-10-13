@@ -1,7 +1,10 @@
-defaultTasks 'clean', 'assemble'
+import java.text.SimpleDateFormat
+
+defaultTasks 'clean', 'assemble', 'generateVersionFile'
 
 def artifactname = 'course-api-data'
 def artifactversion = '0.0.1-SNAPSHOT'
+def outputFile = file("$buildDir/libs/version.txt")
 
 buildscript {
 	ext {
@@ -23,7 +26,6 @@ apply plugin: 'org.springframework.boot'
 
 jar {
 	baseName = artifactname
-	version = artifactversion
 	manifest {
 		attributes 'Main-Class' : 'org.bhavneshgugnani.CourseApiDataApplication'
 	}
@@ -33,7 +35,18 @@ jar {
 }
 
 assemble.doLast {
-	ant.checksum file: "./build/libs/${artifactname}-${artifactversion}.jar"
+	ant.checksum file: "./build/libs/${artifactname}.jar"
+}
+
+task generateVersionFile << {
+    if (!outputFile.isFile()) {
+        outputFile.parentFile.mkdirs()
+        outputFile.createNewFile()
+    }
+    outputFile.text = """Version: $artifactversion
+Buildtime: ${new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(new Date())}
+Application-name: $artifactname
+"""
 }
 
 sourceCompatibility = 1.8
