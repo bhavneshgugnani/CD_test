@@ -3,7 +3,7 @@ import java.text.SimpleDateFormat
 defaultTasks 'clean', 'assemble', 'generateVersionFile'
 
 def artifactname = 'course-api-data'
-def artifactversion = '0.0.1-SNAPSHOT'
+def artifactversion = '0.0.2-SNAPSHOT'
 def outputFile = file("$buildDir/libs/version.txt")
 
 buildscript {
