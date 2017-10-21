@@ -1,3 +1,3 @@
 Version: 0.0.2-SNAPSHOT
-Buildtime: 18-10-2017 18:10:35
+Buildtime: 21-10-2017 11:57:49
 Application-name: course-api-data
